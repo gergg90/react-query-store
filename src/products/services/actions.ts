@@ -1,10 +1,12 @@
-import { type Product, productsApi } from "..";
+import { productsApi } from "../api/productsApi";
+import { Product } from "../interfaces/products";
 
-interface GetProductsOptions {
+interface OptionsProducts {
   filterKey?: string;
 }
 
-export const getProducts = async ({ filterKey }: GetProductsOptions) => {
+export const getAllProducts = async ({ filterKey }: OptionsProducts) => {
+  // await sleep(5);
   const { data } = await productsApi.get<Product[]>("/products");
   return data;
 };
