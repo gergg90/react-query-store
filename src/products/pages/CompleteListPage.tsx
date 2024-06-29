@@ -6,7 +6,7 @@ export const CompleteListPage = () => {
   return (
     <div className="flex-col">
       <h1 className="text-2xl font-bold">Todos los productos</h1>
-      {isLoading && <h3>Is loading</h3>}
+      {isLoading && <h3>Is loading...</h3>}
       <ProductList products={products} />
     </div>
   );

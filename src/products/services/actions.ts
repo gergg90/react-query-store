@@ -1,3 +1,4 @@
+import { sleep } from "../../helpers/sleep";
 import { productsApi } from "../api/productsApi";
 import { Product } from "../interfaces/products";
 
@@ -6,7 +7,13 @@ interface OptionsProducts {
 }
 
 export const getAllProducts = async ({ filterKey }: OptionsProducts) => {
-  // await sleep(5);
-  const { data } = await productsApi.get<Product[]>("/products");
+  await sleep(3);
+
+  const params = new URLSearchParams();
+  if (filterKey) params.append("category", filterKey);
+
+  const { data } = await productsApi.get<Product[]>(`/products`, {
+    params,
+  });
   return data;
 };
