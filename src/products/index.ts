@@ -12,6 +12,7 @@ export { WomensPage } from "./pages/WomensPage";
 export { productsApi } from "./api/productsApi";
 export type { Product } from "./interfaces/products";
 
+export { usePrefectProducts } from "./hooks/usePrefectProducts";
 export { useProduct } from "./hooks/useProduct";
 export { useProducts } from "./hooks/useProducts";
 

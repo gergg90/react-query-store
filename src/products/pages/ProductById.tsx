@@ -5,7 +5,7 @@ import { useProduct } from "../hooks/useProduct";
 
 export const ProductById = () => {
   const { id } = useParams();
-  const { isLoading, isFetching, product } = useProduct({ id: +id! });
+  const { isLoading, product } = useProduct({ id: +id! });
 
   useEffect(() => {
     window.scrollTo(0, 0);
