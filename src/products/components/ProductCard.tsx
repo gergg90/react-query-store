@@ -1,22 +1,22 @@
 import { Card, Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
-import { Product, usePrefectProducts } from "..";
+import { Product } from "..";
 
 interface ProductProps {
   product: Product;
   fullDescription?: boolean;
+  prefetchData?: (id: number) => void;
 }
 
 export const ProductCard = ({
   product,
   fullDescription = false,
+  prefetchData,
 }: ProductProps) => {
-  const { prefetchData } = usePrefectProducts();
-
   return (
     <Link
       // onMouseEnter={prefetchData}
-      onMouseEnter={() => prefetchData(product.id)}
+      onMouseEnter={() => prefetchData && prefetchData(product.id)}
       to={`/product/${product.id}`}
     >
       <Card className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
