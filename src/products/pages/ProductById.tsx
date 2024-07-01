@@ -13,7 +13,7 @@ export const ProductById = () => {
 
   return (
     <div className="flex-col">
-      <h2 className="text-2xl font-bold"> Product</h2>
+      <h2 className="text-2xl font-bold">Product</h2>
       {isLoading && "...loading"}
       {product && <ProductCard product={product} fullDescription />}
     </div>
