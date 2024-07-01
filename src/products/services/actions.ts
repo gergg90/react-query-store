@@ -25,3 +25,18 @@ export const getProductById = async (id: number): Promise<Product> => {
   const { data } = await productsApi.get<Product>(`/products/${id}`);
   return data;
 };
+
+interface ProductLike {
+  id?: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}
+
+export const postProduct = async (product: ProductLike) => {
+  await sleep(2);
+  const { data } = await productsApi.post<Product>("/products", product);
+  return data;
+};

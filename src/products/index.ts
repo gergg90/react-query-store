@@ -14,6 +14,7 @@ export type { Product } from "./interfaces/products";
 
 export { usePrefectProducts } from "./hooks/usePrefectProducts";
 export { useProduct } from "./hooks/useProduct";
+export { useProductMutation } from "./hooks/useProductMutation";
 export { useProducts } from "./hooks/useProducts";
 
 export * as productsActions from "./services/actions";

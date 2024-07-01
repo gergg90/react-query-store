@@ -1,5 +1,7 @@
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
+import { useMutation } from "@tanstack/react-query";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { productsActions } from "..";
 
 interface FormInpus {
   title: string;
@@ -10,6 +12,10 @@ interface FormInpus {
 }
 
 export const NewProduct = () => {
+  const proveMutation = useMutation({
+    mutationFn: productsActions.postProduct,
+  });
+
   const {
     watch,
     control,
@@ -25,7 +31,11 @@ export const NewProduct = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormInpus> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormInpus> = (data) => {
+    console.log(data);
+
+    proveMutation.mutate(data);
+  };
 
   return (
     <div className="w-full flex-col">
@@ -116,8 +126,13 @@ export const NewProduct = () => {
             />
 
             <br />
-            <Button type="submit" className="mt-2" color="primary">
-              Crear
+            <Button
+              isDisabled={proveMutation.isPending}
+              type="submit"
+              className="mt-2"
+              color="primary"
+            >
+              {proveMutation.isPending ? "Loading..." : "Crear"}
             </Button>
           </div>
 
