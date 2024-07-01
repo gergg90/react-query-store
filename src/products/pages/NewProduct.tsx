@@ -11,11 +11,19 @@ interface FormInpus {
 
 export const NewProduct = () => {
   const {
-    register,
+    watch,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInpus>();
+  } = useForm<FormInpus>({
+    defaultValues: {
+      title: "",
+      price: 0,
+      description: "",
+      category: "",
+      image: "",
+    },
+  });
 
   const onSubmit: SubmitHandler<FormInpus> = (data) => console.log(data);
 
@@ -41,6 +49,10 @@ export const NewProduct = () => {
               )}
             />
 
+            {errors.title && (
+              <span className="text-red-500 ">Tittle Field is Required.</span>
+            )}
+
             <Controller
               control={control}
               name="price"
@@ -48,7 +60,7 @@ export const NewProduct = () => {
               render={({ field }) => (
                 <Input
                   value={field.value?.toString()}
-                  onChange={field.onChange}
+                  onChange={(ev) => field.onChange(+ev.target.value)}
                   className="mt-2"
                   type="number"
                   label="Precio del producto"
@@ -116,7 +128,7 @@ export const NewProduct = () => {
               height: "600px",
             }}
           >
-            <Image src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" />
+            <Image src={watch("image")} />
           </div>
         </div>
       </form>
