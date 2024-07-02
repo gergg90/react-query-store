@@ -15,6 +15,7 @@ export const useProducts = ({ filterKey }: ProductOptions) => {
   } = useQuery({
     queryKey: ["products", { filterKey }],
     queryFn: () => productsActions.getAllProducts({ filterKey }),
+    staleTime: 1000 * 60 * 60,
   });
 
   return { products, isError, isLoading, isFetching, error };

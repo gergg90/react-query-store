@@ -9,8 +9,6 @@ interface OptionsProducts {
 export const getAllProducts = async ({
   filterKey,
 }: OptionsProducts): Promise<Product[]> => {
-  await sleep(2);
-
   // const params = new URLSearchParams();
   // if (filterKey) params.append("category", filterKey);
 
@@ -21,7 +19,6 @@ export const getAllProducts = async ({
 };
 
 export const getProductById = async (id: number): Promise<Product> => {
-  await sleep(2);
   const { data } = await productsApi.get<Product>(`/products/${id}`);
   return data;
 };
@@ -36,7 +33,8 @@ interface ProductLike {
 }
 
 export const postProduct = async (product: ProductLike) => {
-  await sleep(2);
+  await sleep(10);
+
   const { data } = await productsApi.post<Product>("/products", product);
   return data;
 };
