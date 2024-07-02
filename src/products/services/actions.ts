@@ -35,6 +35,8 @@ interface ProductLike {
 export const postProduct = async (product: ProductLike) => {
   await sleep(10);
 
+  throw new Error("Error al crear el producto");
+
   const { data } = await productsApi.post<Product>("/products", product);
   return data;
 };
